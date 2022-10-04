@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpeedManager : MonoBehaviour
 {
     private static float speedModifier = 1.0f;
+    enum GameSpeed { Slow = 1, Fast = 3 };
+    private static GameSpeed currentSpeedState = GameSpeed.Slow;
     public static float SpeedModifier
     {
         get
