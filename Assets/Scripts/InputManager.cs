@@ -17,14 +17,16 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             var Sace = SpeedManager.CurrentSpeedState == SpeedManager.GameSpeed.Slow ? SpeedManager.CurrentSpeedState = SpeedManager.GameSpeed.Fast : SpeedManager.CurrentSpeedState = SpeedManager.GameSpeed.Slow;
+            this.gameObject.GetComponent<SaveGameManager>().SaveSpeed();
         } 
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && GameManager.currentGameState != GameManager.GameState.WalkingLevel)
         {
+          
             Destroy(this.gameObject.GetComponent<Tweener>());
             DontDestroyOnLoad(this.gameObject);
             GameManager.currentGameState = GameManager.GameState.WalkingLevel;
-            SceneManager.LoadScene("WalkingScene");
+            SceneManager.LoadScene(1);
 
         }
     }
