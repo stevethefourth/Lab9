@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {    
     public Animator moveAnimator;
-
+    public AsyncLoader async;
     private Vector3 movement;
     private float movementSqrMagnitude; 
     
@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour {
         GetMovementInput();
         CharacterRotation();
         WalkingAnimation();
+        async.pos = this.gameObject.transform.position;
 	}
 
 
@@ -32,6 +33,6 @@ public class CharacterMovement : MonoBehaviour {
 
 
     void WalkingAnimation() {
-        moveAnimator.SetFloat("MoveSpeed", movementSqrMagnitude);
+        moveAnimator.SetFloat("MoveSpeed", movementSqrMagnitude*SpeedManager.SpeedModifier);
     }
 }
